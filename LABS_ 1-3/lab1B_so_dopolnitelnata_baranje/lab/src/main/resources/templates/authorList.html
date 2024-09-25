@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Add new Author to Book</title>
+  <style type = "text/css">
+    body {
+      width: 800px;
+      margin: auto;
+    }
+    table {
+      width:100%;
+    }
+    table, td, th {
+      border: 1px solid black;
+      padding:3px 2px;
+    }
+    section {
+      float: left;
+      margin: 0 1.5%;
+      width: 63%;
+    }
+    aside {
+      float: right;
+      margin: 0 1.5%;
+      width: 30%;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Select the Author to add to the Book </h1>
+</header>
+<!-- SEARCH DOPOLNITELNA FUNKCIJA
+<section>
+  <form th:method="GET" th:action="@{/author}">
+    <label for="searchAuthor">Search:</label>
+    <input id="searchAuthor" type="text" name="searchAuthor"/>
+    <input type="hidden" th:value="${isbn}" th:name="isbn">
+    <input type="submit" value="Submit"/>
+  </form>
+</section>
+-->
+<section>
+  <h2>Select author:</h2>
+  <form th:method="POST" th:action="@{/author}">
+  <ul th:each="author : ${authors}">
+    <li>
+      <input type="radio" name="authorId" th:id="${author.getId()}" th:value="${author.getId()}">
+      <label th:for="${author.getId()}" th:text="${author.getName()}+' '+${author.getSurname()}"></label>
+    </li>
+  </ul>
+  <br/>
+  <input type='submit' value='Add author'>
+    <input type="hidden" th:value="${isbn}" th:name="isbn">
+    <!-- ПОСТОИ МОЖНОСТ и th:value="${session.bookIsbn}, нема потреба да се предава вредноста на контекст па после да се пристапи"-->
+  </form>
+  <form th:method="GET" th:action="@{/moreauthor}"> <br/>
+  <a href="/moreauthor">Add more authors</a>
+
+  </form>
+</section>
+<aside>
+  <table>
+    <tr>
+      <td><b>Book Isbn</b></td>
+      <td th:text="${isbn}"></td>
+    </tr>
+  </table>
+</aside>
+</body>
+</html>

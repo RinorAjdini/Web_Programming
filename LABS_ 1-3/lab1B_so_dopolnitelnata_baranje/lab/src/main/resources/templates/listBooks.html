@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Books Homepage - Welcome to My Book Store</title>
+  <style type="text/css">
+    body {
+      width: 800px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Welcome to My Book Store</h1>
+</header>
+<main>
+  <!-- SEARCH DOPOLNITELNA FUNKCIJA
+  <form th:method="GET" th:action="@{/listBooks}">
+      <label for="search">Search:</label>
+    <input type="text" id="search" name="search"/>
+    <input type="submit" value="Search">
+  </form>
+  -->
+  <h2>Choose book:</h2>
+  <!-- Display radio buttons for each book,
+          the value should be the isbn
+          and the displayed text should be Title: <bookTitle>, Genre:<genre>, Year: <year> -->
+<form th:method="POST" th:action="@{/listBooks}">
+  <ul th:each="book : ${books}">
+    <li><input type="radio" name="isbn" th:id="${book.getIsbn()}" th:value="${book.getIsbn()}"/>
+      <label th:for="${book.getIsbn()}" th:utext="'Title: <b>'+${book.getTitle()}+'</b>, Genre: <b>'+${book.getGenre()}+'</b>, Year: <b>'+${book.getYear()}+'</b>'"></label>
+    </li>
+  </ul>
+  <input type='submit' value='Submit'>
+</form>
+</main>
+</body>
+</html>

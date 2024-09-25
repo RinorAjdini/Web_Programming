@@ -1,0 +1,60 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Books Homepage - Welcome to My Book Store</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            /* Add other styles as needed */
+        }
+
+        a {
+            text-decoration: none; /* Remove underline */
+            color: black; /* Change link color to black (or any other color you prefer) */
+            /* Add other styles as needed */
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to My Book Store</h1>
+</header>
+<div th:if="${param.error != null}" class="error-message">
+    <h2>No book found</h2>
+</div>
+<main>
+    <form method="post" action="/books">
+        <label>
+            <h3>Enter book name to search</h3>
+            <input type="text" value="" name="bookToSearch">
+        </label>
+        <input type='submit' value='Search book'>
+    </form>
+    <form method="get" action="/books/add-form">
+        <input type="submit" value="Add new book">
+    </form>
+    <form method="POST" action="/author">
+        <h2>Choose book:</h2>
+        <ul >
+            <li th:each="book : ${books}">
+                <input type="radio" name="book" th:id="${book.getIsbn()}" th:value="${book.getIsbn()}"/>
+                <label th:for="${book.getIsbn()}" th:utext="'Title: <b>'+${book.getTitle()}+'</b>, Genre: <b>'+${book.getGenre()}+'</b>, Year: <b>'+${book.getYear()}+'</b>,<br/> BookStore: <b>'+${book.getBookStore().getName()}+'</b>'"></label>
+                <button><a th:href="@{'/books/edit-form/{id}' (id=${book.getId()})}" class="edit">Edit</a></button>
+                <button><a th:href="@{'/books/delete/{id}' (id=${book.getId()})}" class="edit">Delete</a></button>
+                <button><a th:href="@{'/books/reviews/{id}' (id=${book.getId()})}" class="edit">Reviews</a></button>
+            </li>
+            </br>
+        </ul>
+
+        <input type='submit' value='Submit'>
+    </form>
+</main>
+</body>
+</html>

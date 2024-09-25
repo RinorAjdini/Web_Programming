@@ -1,0 +1,18 @@
+package mk.ukim.finki.wp.june2022.g1.service.impl;
+
+import mk.ukim.finki.wp.june2022.g1.model.User;
+import mk.ukim.finki.wp.june2022.g1.model.exceptions.InvalidUserIdException;
+import mk.ukim.finki.wp.june2022.g1.repository.UserRepository;
+import mk.ukim.finki.wp.june2022.g1.service.UserService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+
+public class UserServiceImpl {
+
+}

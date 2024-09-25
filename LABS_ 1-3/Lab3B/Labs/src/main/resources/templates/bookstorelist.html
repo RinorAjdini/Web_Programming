@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/bookstore}">
+  <ul >
+    <li th:each="bookstore : ${bookstores}">
+<!--      <input type="radio" name="id" th:id="${bookstore.getName()}" th:value="${bookstore.getId()}"/>-->
+      <label th:for="${bookstore.getId()}" th:utext="'Name: <b>'+${bookstore.getName()}+'</b>, Address: <b>'+${bookstore.getAddress()}+'</b>, City: <b>'+${bookstore.getCity()}+'</b>'"></label>
+      <button><a th:href="@{'/bookstore/details/{id}' (id=${bookstore.getId()})}" class="edit">Details</a></button>
+    </li>
+  </ul>
+</form>
+</body>
+</html>

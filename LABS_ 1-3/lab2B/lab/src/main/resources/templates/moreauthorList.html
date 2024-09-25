@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>More Authors</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/moreauthor}">
+    <ul th:each="author : ${authors}">
+        <li>
+            <input type="checkbox" name="more_authors" th:id="${author.getId()}" th:value="${author.getId()}">
+            <label th:for="${author.getId()}" th:text="${author.getName()}+' '+${author.getSurname()}"></label>
+        </li>
+    </ul>
+    <br/>
+    <input type='submit' value='Add authors'>
+    <input type="hidden" th:value="${isbn}" th:name="isbn">
+    <!-- ПОСТОИ МОЖНОСТ и th:value="${session.bookIsbn}, нема потреба да се предава вредноста на контекст па после да се пристапи"-->
+</form>
+
+</body>
+</html>
